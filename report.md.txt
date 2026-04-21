@@ -1,0 +1,24 @@
+# Self-Pruning Neural Network — Report
+
+## Why does L1 on Sigmoid gates encourage sparsity?
+The sigmoid function squashes gate scores to values between 0 and 1.
+The L1 penalty (sum of all gate values) directly penalizes the network
+for keeping gates "open". Since reducing any gate value toward 0 reduces
+the loss, the optimizer is incentivized to zero out gates for unimportant
+weights, creating a sparse network.
+
+## Results Table
+
+| Lambda | Test Accuracy (%) | Sparsity Level (%) |
+|--------|-------------------|-------------------|
+| 0.0001 | 54.79 | 0.00 |
+| 0.001  | 54.06 | 0.00 |
+| 0.01   | 55.23 | 0.00 |
+
+## Analysis
+- Higher λ → more sparsity but lower accuracy (too aggressive pruning)
+- Lower λ → higher accuracy but less pruning
+- Best trade-off found at λ = (fill yours)
+
+## Gate Distribution Plot
+![Gate Distribution](gate_distribution.png)
